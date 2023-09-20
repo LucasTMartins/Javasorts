@@ -1,16 +1,12 @@
 import java.util.Scanner;
 
 public class Main {
-    public static boolean rodando = true;
-
     public static void main(String[] args) {
-
-        while (rodando){
+        boolean ordenado;
+        while (true){
             Scanner sc = new Scanner(System.in);
             int[] arr = {12, 11, 13, 5, 6};
 
-            System.out.println("Array original: \n");
-            printArray(arr);
 
             System.out.println("\nEscolha uma das opções: " +
                     "\n1-BubbleSort" +
@@ -18,13 +14,12 @@ public class Main {
                     "\n3-MergeSort" +
                     "\n4-HeapSort" +
                     "\n5-Sair do programa");
-            verificarResp(sc.nextInt(), arr);
+            ordenado =  verificarResp(sc.nextInt(), arr);
 
-            for (int i = 0; i> arr.length; i++){
-                if (arr[i] > arr[i-1]){
-                    break;
-                }
+            if (!ordenado){
+                break;
             }
+
             System.out.println("Array ordenado: \n");
             printArray(arr);
 
@@ -32,7 +27,7 @@ public class Main {
         }
     }
 
-    public static void verificarResp(int sort, int[] arr){
+    public static boolean verificarResp(int sort, int[] arr){
         switch (sort){
             case 1:
                 Bubblesort.bubbleSort(arr);
@@ -47,16 +42,27 @@ public class Main {
                 Heapsort.heapSort(arr);
                 break;
             case 5:
-                rodando = false;
-                break;
+                return false;
             default:
                 break;
         }
+
+        System.out.println("Array original: \n");
+        printArray(arr);
+
+        for (int i = 0; i > arr.length; i++){
+            if (arr[i] > arr[i-1]){
+                System.out.println("Ordenação falhou por algum motivo");
+                return false;
+            }
+        }
+
+        return true;
     }
 
     public static void printArray(int[] arr) {
-        for (int j : arr) {
-            System.out.print(j + " ");
+        for (int i : arr) {
+            System.out.print(i + " ");
         }
         System.out.println();
     }
