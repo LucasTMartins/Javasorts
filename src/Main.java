@@ -1,13 +1,25 @@
 import java.util.Scanner;
 
 public class Main {
+    public static Integer arrLen;
+    public static int[] arrOriginal;
     public static void main(String[] args) {
         boolean ordenado;
+        Scanner sc = new Scanner(System.in);
+
+        System.out.println("Digite o tamanho do array:");
+        arrLen = sc.nextInt();
+
+        int[] arr = new int[arrLen];
+
+        for (int i = 0; i < arr.length; i++) {
+            System.out.println("Insira o valor na posição " + i + ":");
+            arr[i] = sc.nextInt();
+        }
+
+        arrOriginal = arr.clone();
+
         while (true){
-            Scanner sc = new Scanner(System.in);
-            int[] arr = {12, 11, 13, 5, 6};
-
-
             System.out.println("\nEscolha uma das opções: " +
                     "\n1-BubbleSort" +
                     "\n2-QuickSort" +
@@ -47,8 +59,8 @@ public class Main {
                 break;
         }
 
-        System.out.println("Array original: \n");
-        printArray(arr);
+        System.out.println("\nArray original: \n");
+        printArray(arrOriginal);
 
         for (int i = 0; i > arr.length; i++){
             if (arr[i] > arr[i-1]){
